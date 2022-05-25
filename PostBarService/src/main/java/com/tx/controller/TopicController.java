@@ -22,12 +22,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/topic")
 public class TopicController {
+
     @Autowired
     private TopicServiceImpl topicService;
 
     @GetMapping
     public List<Topic> findAll(){
-        System.out.println("11");
         return topicService.findAllTopic();
     }
 

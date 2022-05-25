@@ -49,5 +49,10 @@ public class Topic implements Serializable {
      */
     private LocalDateTime createTimeTopic;
 
+    /**
+     * 发帖用户名
+     */
+    private String fromName;
+
 
 }
