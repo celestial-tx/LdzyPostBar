@@ -47,5 +47,22 @@ class TiebaApplicationTests {
         userIPage.getRecords().forEach(System.out::println);
 
     }
+    @Test
+    void findById(){
+        Topic topic = topicDao.selectById(2);
+        System.out.println(topic);
+    }
+
+    @Test
+    void findAllByType(){
+        QueryWrapper<Topic> wrapper = new QueryWrapper<>();
+        wrapper.eq("topic_type","学习");
+        wrapper.orderByDesc("create_time_topic");
+        long count=topicDao.selectCount(wrapper);
+        IPage<Topic> page = new Page<>(0,2,count);//参数一：当前页，参数二：每页记录数
+        //这里想加分页条件的可以如方法三自己构造条件构造器
+        IPage<Topic> topicTypePage = topicDao.selectPage(page, wrapper);
+        System.out.println(topicTypePage.getRecords());
+    }
 
 }

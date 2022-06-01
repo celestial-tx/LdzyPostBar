@@ -9,14 +9,20 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.ldzy</groupId>
-    <artifactId>tieba</artifactId>
+    <artifactId>PostBar</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>tieba</name>
-    <description>tieba</description>
+    <name>PostBar</name>
+    <description>PostBar</description>
     <properties>
         <java.version>1.8</java.version>
     </properties>
     <dependencies>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>2.0.0</version>
+        </dependency>
 
         <!--代码生成器-->
         <dependency>

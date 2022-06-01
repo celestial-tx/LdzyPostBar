@@ -15,6 +15,8 @@ import java.util.List;
  */
 public interface ITopicService  {
 
-    List<Topic> findAllTopic();
+    List<Topic> findPageByTime(int pageNumber, int pageSize);
+    Topic findById(int id);
+    public List<Topic> findAllByType( String topic_type ,int pageNumber, int pageSize);
 
 }
