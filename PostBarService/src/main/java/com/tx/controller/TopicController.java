@@ -1,9 +1,10 @@
 package com.tx.controller;
 
 
-import com.alibaba.fastjson.JSON;
 import com.tx.pojo.Topic;
 import com.tx.service.impl.TopicServiceImpl;
+import com.tx.utils.Code;
+import com.tx.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,21 +27,24 @@ public class TopicController {
 
     // 根据id查询帖子
     @GetMapping("/byId/{id}")
-    public Topic findById(@PathVariable int id){
-        return  topicService.findById(id);
+    public Result findById(@PathVariable int id){
+        Topic topic = topicService.findById(id);
+        return new Result(topic == null? Code.GET_ERR : Code.GET_SUCCESS,topic);
     }
 
     // 根据类型，时间查询逆序分页查询帖子
     @GetMapping("/type")
-    public List<Topic> findAllByType( String topic_type, int pageNumber ,int pageSize){
-        return  topicService.findAllByType(topic_type,pageNumber,pageSize);
+    public Result findAllByType( String topic_type, int pageNumber ,int pageSize){
+        List<Topic> topicList = topicService.findAllByType(topic_type, pageNumber, pageSize);
+        return new Result(topicList == null? Code.GET_ERR : Code.GET_SUCCESS,topicList);
     }
 
 
     // 根据时间逆序分页查询帖子
     @GetMapping("/params")
-    public List<Topic> findPageByTime(int pageNumber ,int pageSize){
-        return  topicService.findPageByTime(pageNumber, pageSize);
+    public Result findPageByTime(int pageNumber ,int pageSize){
+        List<Topic> topicList = topicService.findPageByTime(pageNumber, pageSize);
+        return new Result(topicList == null? Code.GET_ERR : Code.GET_SUCCESS,topicList);
     }
 
 }
