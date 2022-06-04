@@ -15,18 +15,19 @@ public class ProjectInterceptor implements HandlerInterceptor {
     //返回值类型可以拦截控制的执行，true放行，false终止
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        return HandlerInterceptor.super.preHandle(request, response, handler);
+        System.out.println("11");
+        return true;
     }
 
     //原始方法调用后执行的内容
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        HandlerInterceptor.super.postHandle(request, response, handler, modelAndView);
+        System.out.println("22");
     }
 
     //原始方法调用完成后执行的内容
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        HandlerInterceptor.super.afterCompletion(request, response, handler, ex);
+        System.out.println("33");
     }
 }

@@ -1,8 +1,6 @@
-package com.tx.controller;
+package com.tx.exception;
 
-import com.tx.exception.BusinessException;
-import com.tx.exception.SystemException;
-import com.tx.utils.Code;
+import com.tx.utils.ResultCode;
 import com.tx.utils.Result;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -11,18 +9,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class ExceptionAdvice {
 
-    //@ExceptionHandler用于设置当前处理器类对应的异常类型
-    @ExceptionHandler(SystemException.class)
-    public Result doSystemException(SystemException ex){
-        //记录日志
-        //发送消息给运维
-        //发送邮件给开发人员,ex对象发送给开发人员
-        return new Result(ex.getCode(),null,ex.getMessage());
-    }
-
     @ExceptionHandler(BusinessException.class)
     public Result doBusinessException(BusinessException ex){
-        return new Result(ex.getCode(),null,ex.getMessage());
+        return new Result(null,ex.getCode(),ex.getMessage());
     }
 
     //除了自定义的异常处理器，保留对Exception类型的异常处理，用于处理非预期的异常
@@ -31,6 +20,6 @@ public class ExceptionAdvice {
         //记录日志
         //发送消息给运维
         //发送邮件给开发人员,ex对象发送给开发人员
-        return new Result(Code.SYSTEM_UNKNOW_ERR,null,"系统繁忙，请稍后再试！");
+        return new Result(null,ResultCode.SYSTEM_UNKNOW_ERR.getCode(),ResultCode.SYSTEM_UNKNOW_ERR.getMessage());
     }
 }

@@ -7,8 +7,7 @@ import com.tx.exception.BusinessException;
 import com.tx.pojo.Topic;
 import com.tx.dao.TopicDao;
 import com.tx.service.ITopicService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.tx.utils.Code;
+import com.tx.utils.ResultCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,7 +40,7 @@ public class TopicServiceImpl  implements ITopicService {
             IPage<Topic> userIPage = topicDao.selectPage(page, wrapper);
             return userIPage.getRecords();
         }catch (Exception e){
-            throw new BusinessException(Code.GET_ERR,"查询失败，数据库异常");
+            throw new BusinessException(ResultCode.GET_ERR.getCode(),"查询失败，数据库异常");
         }
 
     }
@@ -52,7 +51,7 @@ public class TopicServiceImpl  implements ITopicService {
         try {
             return  topicDao.selectById(id);
         }catch (Exception e){
-            throw new BusinessException(Code.GET_ERR,"查询失败，数据库异常");
+            throw new BusinessException(ResultCode.GET_ERR.getCode(),"查询失败，数据库异常");
         }
 
     }
@@ -70,7 +69,7 @@ public class TopicServiceImpl  implements ITopicService {
             IPage<Topic> topicTypePage = topicDao.selectPage(page, wrapper);
             return topicTypePage.getRecords();
         }catch (Exception e){
-            throw new BusinessException(Code.GET_ERR,"查询失败，数据库异常");
+            throw new BusinessException(ResultCode.GET_ERR.getCode(),"查询失败，数据库异常");
         }
 
     }
