@@ -17,6 +17,6 @@ public interface ITopicService  {
 
     List<Topic> findPageByTime(int pageNumber, int pageSize);
     Topic findById(int id);
-    public List<Topic> findAllByType( String topic_type ,int pageNumber, int pageSize);
+    List<Topic> findAllByType( Integer topic_type ,int pageNumber, int pageSize);
 
 }

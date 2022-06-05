@@ -36,7 +36,7 @@ public class TopicController {
 
     // 根据类型，时间查询逆序分页查询帖子
     @GetMapping("/type")
-    public Result findAllByType( String topic_type, int pageNumber ,int pageSize){
+    public Result findAllByType( Integer topic_type, int pageNumber ,int pageSize){
         List<Topic> topicList = topicService.findAllByType(topic_type, pageNumber, pageSize);
         return new Result(topicList, topicList == null? ResultCode.GET_ERR.getCode() : ResultCode.GET_SUCCESS.getCode()
                          ,topicList == null? ResultCode.GET_ERR.getMessage() : ResultCode.GET_SUCCESS.getMessage());

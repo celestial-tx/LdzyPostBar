@@ -56,9 +56,9 @@ public class TopicServiceImpl  implements ITopicService {
 
     }
 
-    // 根据时间逆序分页查询
+    // 根据时间和类型逆序分页查询
     @Override
-    public List<Topic> findAllByType(String topic_type,int pageNumber, int pageSize) {
+    public List<Topic> findAllByType(Integer topic_type,int pageNumber, int pageSize) {
         try{
             QueryWrapper<Topic> wrapper = new QueryWrapper<>();
             wrapper.eq("topic_type",topic_type);

@@ -30,9 +30,9 @@ public class Topic implements Serializable {
     private Integer tid;
 
     /**
-     * 帖子类型
+     * 帖子类型: 1(学习) 2（闲聊）
      */
-    private String topicType;
+    private Integer topicType;
 
     /**
      * 帖子内容
