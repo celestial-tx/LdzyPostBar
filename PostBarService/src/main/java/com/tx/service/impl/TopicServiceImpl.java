@@ -73,4 +73,14 @@ public class TopicServiceImpl  implements ITopicService {
         }
 
     }
+
+    @Override
+    public int saveTopic(Topic topic) {
+        try {
+            int insert = topicDao.insert(topic);
+            return insert;
+        }catch (Exception e){
+            throw new BusinessException(ResultCode.PUT_ERR.getCode(), ResultCode.POST_ERR.getMessage());
+        }
+    }
 }

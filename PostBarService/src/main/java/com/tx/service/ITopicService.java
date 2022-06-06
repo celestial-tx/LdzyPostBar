@@ -18,5 +18,6 @@ public interface ITopicService  {
     List<Topic> findPageByTime(int pageNumber, int pageSize);
     Topic findById(int id);
     List<Topic> findAllByType( Integer topic_type ,int pageNumber, int pageSize);
+    int saveTopic(Topic topic);
 
 }

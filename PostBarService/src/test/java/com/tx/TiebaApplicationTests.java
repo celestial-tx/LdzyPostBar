@@ -10,6 +10,7 @@ import com.tx.dao.TopicDao;
 import com.tx.dao.UserDao;
 import com.tx.pojo.Topic;
 import com.tx.pojo.User;
+import com.tx.service.impl.TopicServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,8 @@ class TiebaApplicationTests {
     private UserDao userDao;
     @Autowired
     private TopicDao topicDao;
+    @Autowired
+    private TopicServiceImpl topicService;
 
     @Test
     void contextLoads() {
@@ -63,6 +66,21 @@ class TiebaApplicationTests {
         //这里想加分页条件的可以如方法三自己构造条件构造器
         IPage<Topic> topicTypePage = topicDao.selectPage(page, wrapper);
         System.out.println(topicTypePage.getRecords());
+    }
+
+    @Test
+    void saveTopic(){
+        Topic topic = new Topic();
+        topic.setTopicType(2);
+        topic.setContent("insert Demo Test...." +
+                "111");
+        topic.setFromName("hexin");
+        topic.setFromUid(1528205241453920257L);
+
+        int i = topicService.saveTopic(topic);
+        if (i > 0){
+            System.out.println("SUCCESS");
+        }
     }
 
 }
