@@ -6,11 +6,7 @@ import com.tx.service.impl.UserServiceImpl;
 import com.tx.utils.Result;
 import com.tx.utils.ResultCode;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -34,5 +30,11 @@ public class UserController {
         return new Result(i > 0? ResultCode.POST_SUCCESS.getCode(): ResultCode.POST_ERR.getCode()
                           ,i > 0? ResultCode.POST_SUCCESS.getMessage(): ResultCode.POST_ERR.getMessage());
     }
+
+    @GetMapping
+    public Result login(){
+
+    }
+
 }
 

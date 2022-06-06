@@ -16,5 +16,4 @@ import org.apache.ibatis.annotations.Mapper;
 public interface TopicDao extends BaseMapper<Topic> {
 
 
-
 }

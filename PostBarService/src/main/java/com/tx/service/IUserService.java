@@ -17,4 +17,6 @@ public interface IUserService {
 
     int saveUser(User user);
 
+    boolean login(int account, String passwd);
+
 }
