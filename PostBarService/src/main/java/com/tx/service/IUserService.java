@@ -15,8 +15,10 @@ import java.util.List;
  */
 public interface IUserService {
 
-    int saveUser(User user);
+    int saveUser(String uname,int account , String passwd);
 
     boolean login(int account, String passwd);
+
+    User findByAccount(int account);
 
 }

@@ -22,10 +22,13 @@
         <el-col :span="5">
             <el-menu><router-link to="/userCenter">个人中心</router-link></el-menu>
         </el-col>
+        <el-col :span="5">
+            <el-menu><router-link to="/">登录</router-link></el-menu>
+        </el-col>
       </el-row>
     </el-header>
 
-    <el-main>
+    <el-main class="main">
       <keep-alive>
         <router-view v-if="$route.meta.keepAlive"></router-view>
       </keep-alive>
@@ -52,5 +55,9 @@ export default {
   position: fixed;
   z-index: 999;
   text-align: center;
+}
+.main{
+  width: 100%;
+  height: 50%;
 }
 </style>

@@ -10,7 +10,7 @@
       <h4>登录</h4>
       <el-form :model="loginForm"
                :rules="loginRules"
-               ref="loginForm"
+               ref="loginFormRef"
                label-width="0px">
         <el-form-item label=""
                       prop="userName"
@@ -45,6 +45,10 @@
                      round
                      class="submitBtn"
                      @click="submitForm">登录</el-button>
+          <el-button type="primary"
+                     round
+                     class="submitBtn"
+                     @click="register">注册</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -114,6 +118,10 @@ export default {
     }
   },
   methods: {
+
+    register(){
+      this.$router.replace({ path: '/register' })
+    },
     //提交登录
     submitForm() {
       const params = new URLSearchParams()
@@ -124,6 +132,12 @@ export default {
         .then((res) => {
           if (res.data.code == 20001) {
             this.$router.replace({ path: '/main' })
+            this.$store.state.loginAccount = this.loginForm.account;
+            console.log(this.$store.state.loginAccount)
+          }else{
+            this.$message.error(res.data.message)
+            this.loginForm.account = ""
+            this.loginForm.passwd = ""
           }
         })
     },
@@ -225,10 +239,10 @@ export default {
 
 <style lang='less' scoped>
 #login {
-  width: 100vw;
+  width: 100%;
   padding: 0;
   margin: 0;
-  height: 100vh;
+  height: 100%;
   font-size: 16px;
   background-repeat: no-repeat;
   background-position: left top;
@@ -239,8 +253,8 @@ export default {
   background-image: url('../assets/login3.png');
   position: relative;
   #bgd {
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     overflow: hidden;
   }
   #loginBox {
@@ -269,7 +283,7 @@ export default {
     .submitBtn {
       background-color: transparent;
       color: #39f;
-      width: 200px;
+      width: 100px;
     }
     .iconfont {
       color: #fff;
