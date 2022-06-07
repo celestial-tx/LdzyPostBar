@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 //定义拦截器类，实现HandlerInterceptor接口
-@Component
+
 public class ProjectInterceptor implements HandlerInterceptor {
 
     //原始方法调用前执行的内容

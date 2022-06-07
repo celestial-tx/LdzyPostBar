@@ -1,6 +1,7 @@
 package com.tx.controller;
 
 
+import com.sun.org.glassfish.gmbal.ParameterNames;
 import com.tx.pojo.User;
 import com.tx.service.impl.UserServiceImpl;
 import com.tx.utils.Result;
@@ -31,9 +32,11 @@ public class UserController {
                           ,i > 0? ResultCode.POST_SUCCESS.getMessage(): ResultCode.POST_ERR.getMessage());
     }
 
-    @GetMapping
-    public Result login(){
-
+    @PostMapping("/login")
+    public Result login(Integer account , String passwd){
+        System.out.println(account+passwd);
+        boolean login = userService.login(account, passwd);
+        return new Result(login ? ResultCode.POST_SUCCESS.getCode() : ResultCode.POST_ERR.getCode(),login ? "登录成功" : "用户名或密码不正确");
     }
 
 }
