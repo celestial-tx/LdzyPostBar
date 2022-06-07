@@ -14,8 +14,8 @@ const routes = [
 
   {
     path: '/',
-    name: 'Main',
-    component: Main
+    name: 'Login',
+    component: Login
   },
   {
     path: '/register',
@@ -43,9 +43,9 @@ const routes = [
     component: Posting
   },
   {
-    path: '/login',
-    name: 'Login',
-    component: Login
+    path: '/main',
+    name: 'Main',
+    component: Main
   }
 ]
 

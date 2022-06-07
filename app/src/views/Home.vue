@@ -4,7 +4,7 @@
     <el-header>
       <el-row  class="nav" type="flex" align="middle">
         <el-col :span="5">
-            <el-menu><router-link to="/">主页</router-link></el-menu>
+            <el-menu><router-link to="/main">主页</router-link></el-menu>
         </el-col>
         <el-col :span="5">
             <el-menu><router-link :to="{name:'TopicList', params:{type: 1}}">
