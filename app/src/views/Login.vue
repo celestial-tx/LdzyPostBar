@@ -132,8 +132,8 @@ export default {
         .then((res) => {
           if (res.data.code == 20001) {
             this.$router.replace({ path: '/main' })
-            this.$store.state.loginAccount = this.loginForm.account;
-            console.log(this.$store.state.loginAccount)
+            this.$store.state.loginID = res.data.data;
+            console.log(this.$store.state.loginID)
           }else{
             this.$message.error(res.data.message)
             this.loginForm.account = ""

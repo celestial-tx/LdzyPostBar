@@ -26,8 +26,6 @@
             <el-menu><router-link to="/">登录</router-link></el-menu>
         </el-col>
       </el-row>
-    </el-header>
-
     <el-main class="main">
       <keep-alive>
         <router-view v-if="$route.meta.keepAlive"></router-view>

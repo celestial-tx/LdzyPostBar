@@ -1,7 +1,6 @@
 package com.tx.service;
 
 import com.tx.pojo.User;
-import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
 
@@ -20,5 +19,9 @@ public interface IUserService {
     boolean login(int account, String passwd);
 
     User findByAccount(int account);
+
+    Long getUid(int account);
+
+    List<User> findTopic(Long uid);
 
 }

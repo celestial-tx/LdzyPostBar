@@ -5,10 +5,11 @@ import com.tx.exception.BusinessException;
 import com.tx.pojo.User;
 import com.tx.dao.UserDao;
 import com.tx.service.IUserService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.tx.utils.ResultCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -38,6 +39,31 @@ public class UserServiceImpl  implements IUserService {
             throw new BusinessException(ResultCode.POST_ERR.getCode(), ResultCode.POST_ERR.getMessage());
         }
 
+    }
+
+    // 获取用户uid
+    @Override
+    public Long getUid(int account){
+        try {
+            QueryWrapper<User> wrapper = new QueryWrapper<>();
+            wrapper.eq("user_account", account);
+            User user = userDao.selectOne(wrapper);
+            Long userId = user.getUid();
+            return userId;
+        }catch (Exception e){
+            throw new BusinessException(ResultCode.GET_SUCCESS.getCode(), "数据库异常");
+        }
+    }
+
+    // 一对多
+    @Override
+    public List<User> findTopic(Long uid) {
+        try{
+            List<User> userList = userDao.findTopic(uid);
+            return  userList;
+        }catch (Exception e){
+            throw new BusinessException(ResultCode.GET_ERR.getCode(),"数据库异常");
+        }
     }
 
     // 登录
@@ -71,4 +97,6 @@ public class UserServiceImpl  implements IUserService {
             throw new BusinessException(ResultCode.GET_ERR.getCode(),ResultCode.GET_ERR.getMessage());
         }
     }
+
+
 }

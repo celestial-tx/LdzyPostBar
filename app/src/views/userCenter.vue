@@ -11,7 +11,8 @@ export default {
   },
   methods:{
     getUser(){
-      this.$axios.get("")
+      this.userID = this.$store.state.loginID
+      this.$axios.get("/hou/user/"+this.userID )
     }
   }
 }

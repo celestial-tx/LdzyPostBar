@@ -8,6 +8,12 @@ spring:
     url: jdbc:mysql://localhost:3306/postbar?serverTimezone=UTC
     username: root
     password: 123456
+  jackson:
+    generator:
+      write_numbers_as_strings: true
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
 
 # mybatis-plus 日志
 mybatis-plus:

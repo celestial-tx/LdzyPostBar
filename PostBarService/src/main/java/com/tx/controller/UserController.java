@@ -1,13 +1,14 @@
 package com.tx.controller;
 
 
-import com.sun.org.glassfish.gmbal.ParameterNames;
 import com.tx.pojo.User;
 import com.tx.service.impl.UserServiceImpl;
 import com.tx.utils.Result;
 import com.tx.utils.ResultCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * <p>
@@ -34,17 +35,23 @@ public class UserController {
 
     // 登录
     @PostMapping("/login")
-    public Result login(int account , String passwd){
+    public Result<Long> login(int account , String passwd){
         System.out.println(account+passwd);
         boolean login = userService.login(account, passwd);
-        return new Result(login ? ResultCode.POST_SUCCESS.getCode() : ResultCode.POST_ERR.getCode(),login ? "登录成功" : "用户名或密码不正确");
+        Long uid = null;
+        if (login){
+            uid = userService.getUid(account);
+        }
+        Result<Long> result=new Result<Long>(uid,login ? ResultCode.POST_SUCCESS.getCode() : ResultCode.POST_ERR.getCode(),login ? "登录成功" : "用户名或密码不正确");
+        return result;
+
     }
 
-    @GetMapping("/userAccount")
-    public Result findByAccount(int account){
-        User user = userService.findByAccount(account);
-        return new Result(user,user == null? ResultCode.GET_ERR.getCode() : ResultCode.GET_SUCCESS.getCode()
-                      ,user == null? ResultCode.GET_ERR.getMessage() : ResultCode.GET_SUCCESS.getMessage());
+    @GetMapping("/{uid}")
+    public Result findByAccount(@PathVariable Long uid){
+        List<User> userList = userService.findTopic(uid);
+        return new Result(userList,userList == null? ResultCode.GET_ERR.getCode() : ResultCode.GET_SUCCESS.getCode()
+                      ,userList == null? ResultCode.GET_ERR.getMessage() : ResultCode.GET_SUCCESS.getMessage());
     }
 }
 
